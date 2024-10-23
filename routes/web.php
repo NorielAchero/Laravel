@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -34,28 +35,38 @@ use Illuminate\Http\Request;
 
 // Route::permanentRedirect('/welcome', '/');
 
-Route::get('/', function(){
-    return 'Welcome';
-});
-
-// Route::get('/users', function(Request $request){
-//     dd($request);
-//     return null;
+// Route::get('/', function(){
+//     return 'Welcome';
 // });
 
-Route::get('/user/{id}/{group}', function($id, $group){
-    return response($id.'-'.$group, 200);
+// // Route::get('/users', function(Request $request){
+// //     dd($request);
+// //     return null;
+// // });
+
+// Route::get('/user/{id}/{group}', function($id, $group){
+//     return response($id.'-'.$group, 200);
+// });
+
+// Route::get('/request-json', function(){
+//     return response()->json(['name' => 'Noriel', 'age' => '21']);
+// });
+
+// Route::get('/request-download', function(){
+//     $path = public_path().'/robots.txt';
+//     $name = 'robots.txt';
+//     $headers = array(
+//         'Content-type: application/text-plain',
+//     );
+//     return response()->download($path, $name, $headers);
+// });
+
+
+
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::get('/request-json', function(){
-    return response()->json(['name' => 'Noriel', 'age' => '21']);
-});
+Route::get('/users', [UserController::class, 'index']);
 
-Route::get('/request-download', function(){
-    $path = public_path().'/robots.txt';
-    $name = 'robots.txt';
-    $headers = array(
-        'Content-type: application/text-plain',
-    );
-    return response()->download($path, $name, $headers);
-});
+Route::get('/user/{id}', [UserController::class, 'show']);
