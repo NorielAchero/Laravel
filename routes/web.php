@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -63,10 +64,14 @@ use Illuminate\Http\Request;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [StudentController::class, 'index']);
 
 Route::get('/users', [UserController::class, 'index']);
 
 Route::get('/user/{id}', [UserController::class, 'show']);
+
+Route::get('/student/{id}', [StudentController::class, 'show']);
