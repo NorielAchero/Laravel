@@ -26,6 +26,7 @@ class StudentController extends Controller
 
     public function show($id){
         $data = Students::findOrFail($id); // Correct method to find by primary key
+        dd($data);
         return view('students.index', ['students' => $data]);
     }
 }
